@@ -8,27 +8,28 @@ const clearButton = document.querySelector("#clear-todos");
 
 eventListeners();
 
-function eventListeners(){
+function eventListeners() {
 
-    form.addEventListener("submit",addTodo);
+    form.addEventListener("submit", addTodo);
 }
-function addTodo(e){
+
+function addTodo(e) {
     const newTodo = todoInput.value.trim();
     console.log(newTodo);
     addTodoToUI(newTodo);
     e.preventDefault();
 }
-function addTodoToUI(newTodo){
+
+function addTodoToUI(newTodo) {
 
     const listItem = document.createElement("li");
-const link = document.createElement("a");
-link.href = "#";
-link.className = "delete-item";
-link.innerHTML =  "<i class = 'fa fa-remove'></i>";
-listItem.className = "list-group-item d-flex justify-content-between";
-listItem.appendChild(document.createTextNode(newTodo));
-listItem.appendChild(link);
+    const link = document.createElement("a");
+    link.href = "#";
+    link.className = "delete-item";
+    link.innerHTML = "<i class = 'fa fa-remove'></i>";
+    listItem.className = "list-group-item d-flex justify-content-between";
+    listItem.appendChild(document.createTextNode(newTodo));
+    listItem.appendChild(link);
 
-todoList.appendChild(listItem);
+    todoList.appendChild(listItem);
 }
-
