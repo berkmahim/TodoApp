@@ -20,9 +20,7 @@ function addTodo(e){
 }
 function addTodoToUI(newTodo){
 
-}
-
-const listItem = document.createElement("li");
+    const listItem = document.createElement("li");
 const link = document.createElement("a");
 link.href = "#";
 link.className = "delete-item";
@@ -32,3 +30,5 @@ listItem.appendChild(document.createTextNode(newTodo));
 listItem.appendChild(link);
 
 todoList.appendChild(listItem);
+}
+
