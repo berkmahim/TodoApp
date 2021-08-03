@@ -32,4 +32,5 @@ function addTodoToUI(newTodo) {
     listItem.appendChild(link);
 
     todoList.appendChild(listItem);
+    todoInput.value = "";
 }
