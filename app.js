@@ -15,9 +15,39 @@ function eventListeners() {
 
 function addTodo(e) {
     const newTodo = todoInput.value.trim();
-    console.log(newTodo);
-    addTodoToUI(newTodo);
-    e.preventDefault();
+    if (newTodo === ""){
+        showAlert("danger","please type a todo");
+    }
+    else{
+        addTodoToUI(newTodo);
+        addTodoToStorage(newTodo);
+        showAlert("success","todo eklendi");
+    }
+    
+     e.preventDefault();
+}
+function getTodosFromStorage(){
+    let todos;
+    if(localStorage.getItem("todos") === null){
+        todos = [];
+    }
+    else{
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+    return todos;
+}
+function addTodoToStorage(newTodo){
+    let todos = getTodosFromStorage();
+    todos.push(newTodo);
+    localStorage.setItem("todos",JSON.stringify(todos));
+}
+
+function showAlert(type,message){
+    const alert = document.createElement("div");
+    alert.className = `alert alert-${type}`;
+    alert.textContent = message;
+    // console.log(alert);
+    firstCardBody.appendChild(alert);
 }
 
 function addTodoToUI(newTodo) {
