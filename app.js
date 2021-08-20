@@ -12,8 +12,13 @@ function eventListeners() {
 
     form.addEventListener("submit", addTodo);
     document.addEventListener("DOMContentLoaded", loadAllTodosToUI);
+    secondCardBody.addEventListener("click", deleteTodo);
 }
-
+function deleteTodo(e){
+    if(e.target.className == "fa fa-remove"){
+        e.target.parentElement.parentElement.remove();
+    }
+}
 function loadAllTodosToUI() {
     let todos = getTodosFromStorage();
     todos.forEach(function (todo) {
@@ -55,7 +60,7 @@ function showAlert(type, message) {
     const alert = document.createElement("div");
     alert.className = `alert alert-${type}`;
     alert.textContent = message;
-    // console.log(alert);
+    console.log(alert);
     firstCardBody.appendChild(alert);
 }
 
