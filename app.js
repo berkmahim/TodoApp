@@ -11,45 +11,47 @@ eventListeners();
 function eventListeners() {
 
     form.addEventListener("submit", addTodo);
-    document.addEventListener("DOMContentLoaded",loadAllTodosToUI);
+    document.addEventListener("DOMContentLoaded", loadAllTodosToUI);
 }
-function loadAllTodosToUI(){
+
+function loadAllTodosToUI() {
     let todos = getTodosFromStorage();
-    todos.forEach(function(todo){
+    todos.forEach(function (todo) {
         addTodoToUI(todo);
     })
 
 }
+
 function addTodo(e) {
     const newTodo = todoInput.value.trim();
-    if (newTodo === ""){
-        showAlert("danger","please type a todo");
-    }
-    else{
+    if (newTodo === "") {
+        showAlert("danger", "please type a todo");
+    } else {
         addTodoToUI(newTodo);
         addTodoToStorage(newTodo);
-        showAlert("success","todo eklendi");
+        showAlert("success", "todo eklendi");
     }
-    
-     e.preventDefault();
+
+    e.preventDefault();
 }
-function getTodosFromStorage(){
+
+function getTodosFromStorage() {
     let todos;
-    if(localStorage.getItem("todos") === null){
+    if (localStorage.getItem("todos") === null) {
         todos = [];
-    }
-    else{
+    } else {
         todos = JSON.parse(localStorage.getItem("todos"));
     }
     return todos;
 }
-function addTodoToStorage(newTodo){
+
+function addTodoToStorage(newTodo) {
     let todos = getTodosFromStorage();
     todos.push(newTodo);
-    localStorage.setItem("todos",JSON.stringify(todos));
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
 
-function showAlert(type,message){
+function showAlert(type, message) {
     const alert = document.createElement("div");
     alert.className = `alert alert-${type}`;
     alert.textContent = message;
